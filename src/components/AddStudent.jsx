@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './UserContext';
 import './AddStudent.css'
+import jsPDF from 'jspdf';
+import "jspdf-autotable";
 
 function AddStudent(props) {
     const [students, setStudents] = useContext(UserContext).allStudents;
@@ -108,14 +110,37 @@ function AddStudent(props) {
                     progress: undefined,
                     theme: "light",
                 });
-    
+
                 setMentorAccess(preVal => ({
                     ...preVal,
                     [currentMentor]: false
                 }));
-                studentData.map((value) => {
-                    sendEmail(value);
-                })
+                // studentData.map((value) => {
+                //     sendEmail(value);
+                // })
+
+                const doc = new jsPDF();
+                const headers = [["UID", "Name", "Ideation", "Execution", "Viva", "Email"]];
+                // Add title for first table
+                doc.text("All Students", 14, 16);
+
+                const AllStudentdata = students.map(row => [row.uid, row.name, row.ideation, row.execution, row.viva, row.email]);
+                doc.autoTable({
+                    head: headers,
+                    body: AllStudentdata,
+                });
+
+                // Add title for second table
+                doc.text("Selected Students", 14, doc.lastAutoTable.finalY + 10);
+
+                const selectedData = studentData.map(row => [row.uid, row.name, row.ideation, row.execution, row.viva, row.email]);
+                doc.autoTable({
+                    head: headers,
+                    body: selectedData,
+                    startY: doc.lastAutoTable.finalY + 20
+                });
+
+                doc.save("student-data.pdf");
             }
             else {
                 toast.warn('Please enter valid marks', {
@@ -127,7 +152,7 @@ function AddStudent(props) {
                     draggable: true,
                     progress: undefined,
                     theme: "light",
-                }); 
+                });
             }
         }
     }
@@ -319,8 +344,6 @@ function AddStudent(props) {
         const newStudents = studentData.filter(s => s.id !== student.id);
         setStudentData(newStudents);
 
-
-
         setUid('');
         setIdeation(0);
         setExecution(0);
@@ -349,10 +372,10 @@ function AddStudent(props) {
             <td data-label="Total">{parseInt(student.ideation) + parseInt(student.execution) + parseInt(student.viva)}</td>
             <td data-label="Email">{student.email}</td>
             <td data-label="Delete">
-                <button onClick={() => handleDeleteStudent(student)} disabled={!mentorAccess[currentMentor]} className = "btn btn-danger">Delete</button>
+                <button onClick={() => handleDeleteStudent(student)} disabled={!mentorAccess[currentMentor]} className="btn btn-danger">Delete</button>
             </td>
             <td data-label="Update">
-                <button onClick={() => AddUpdateStudent(student)} disabled={!mentorAccess[currentMentor]} className = "btn btn-success">Update</button>
+                <button onClick={() => AddUpdateStudent(student)} disabled={!mentorAccess[currentMentor]} className="btn btn-success">Update</button>
             </td>
         </tr>
     ));
