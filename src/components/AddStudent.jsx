@@ -115,9 +115,9 @@ function AddStudent(props) {
                     ...preVal,
                     [currentMentor]: false
                 }));
-                // studentData.map((value) => {
-                //     sendEmail(value);
-                // })
+                studentData.map((value) => {
+                    sendEmail(value);
+                })
 
                 const doc = new jsPDF();
                 const headers = [["UID", "Name", "Ideation", "Execution", "Viva", "Email"]];

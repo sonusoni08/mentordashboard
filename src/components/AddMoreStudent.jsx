@@ -57,8 +57,8 @@ function AddMoreStudent() {
                     <label htmlFor="email">Email:</label>
                     <input type="text" id="email" value={email} onChange={event => setEmail(event.target.value)} />
                 </div>
-                <div className="form-submit-btn">
-                <Link to = "/mentor1"><input type="submit" onClick={handleAddStudent} value="Add Student" /></Link>
+                <div>
+                <Link to = "/mentor1"><button type="submit" onClick={handleAddStudent}  className="btn btn-primary">Add Student</button></Link>
                 </div>
             </div>
         </div>
