@@ -1,7 +1,7 @@
 {
   "name": "mentordashboard",
   "main":"src/index.js",
-  "homepage":"https://sonusoni08.github.io/mentordashboard/",
+  "homepage":"https://sonusoni08.github.io/mentordashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
