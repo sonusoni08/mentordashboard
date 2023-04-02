@@ -121,8 +121,6 @@ function AddStudent(props) {
 
                 const doc = new jsPDF();
                 const headers = [["UID", "Name", "Ideation", "Execution", "Viva", "Email"]];
-                // Add title for first table
-                doc.text("All Students", 14, 16);
 
                 const AllStudentdata = students.map(row => [row.uid, row.name, row.ideation, row.execution, row.viva, row.email]);
                 doc.autoTable({
