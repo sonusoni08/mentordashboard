@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+}
+
+.nav-mentor {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: rgb(5, 5, 116);
+    padding-left: 20px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 5% 0 5%;
+}

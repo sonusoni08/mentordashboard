@@ -1,0 +1,133 @@
+.table-box {
+    margin-top: 5rem;
+    padding : 0;
+    box-sizing : border-box;
+    background-color: #F6F1F1;
+    font-family: sans-serif;
+}
+
+.table-container {
+    padding: 0 10%;
+    margin: 40px auto 0;
+}
+
+
+.heading {
+    font-size: 40px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 40px;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table thead {
+    background-color: #146C94;
+}
+.table thead tr th{
+    font-size: 14px;
+    font-weight: medium;
+    letter-spacing: 0.35px;
+    color: #FFFFFF;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid #dee2e685;
+}
+
+.table tbody tr td{
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.35px;
+    color: #000000;
+    background-color: #FFFFFF;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #dee2e685;
+}
+
+.table .text_open {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.35px;
+    color: #146C94;
+}
+
+.table .tbody tr td .btn {
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: block;
+    background-color: #146C94;
+    font-weight: medium;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 10px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+}
+
+@media(max-width : 768px) {
+    .table-box {
+    }
+    .table thead {
+        display: none;
+    }
+    .table, .table tbody, .table td {
+        display: block;
+        width: 100%;
+        margin-left: 5%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table tbody tr td {
+        text-align: alright;
+        padding-left: 100%;
+        position: relative;
+    }
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+
+
+
+.button5{
+    display:inline-block;
+    padding: 1rem;
+    border:0.1em solid #000000;
+    margin:0 0.2em 0.2em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#000000;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    background-color:#FFFFFF;
+    text-align:center;
+    transition: all 0.15s;
+    }
+    .button5:hover{
+    text-shadow: 0 0 2em rgba(255,255,255,1);
+    color:#000000;
+    border-color:#FFFFFF;
+    }
+    @media all and (max-width:30em){
+    .button5{
+    display:block;
+    margin:0.4em auto;
+    }
+    }
