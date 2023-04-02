@@ -1,31 +1,35 @@
-.table-box {
+.tables-box {
     margin-top: 5rem;
     padding : 0;
     box-sizing : border-box;
-    background-color: #F6F1F1;
     font-family: sans-serif;
+    /* background-image: url(../images/backgroun3.jpg); */
+    background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.table-container {
+.tables-container {
     padding: 0 10%;
-    margin: 40px auto 0;
+    /* margin-left: 20%; */
+    /* margin-right: 50%; */
+    /* margin: 40px auto 0; */
 }
 
 
-.heading {
+.headings {
     font-size: 40px;
     text-align: center;
     color: #000000;
     margin-bottom: 40px;
 }
-.table {
+.tables {
     width: 100%;
     border-collapse: collapse;
 }
-.table thead {
+.tables thead {
     background-color: #146C94;
 }
-.table thead tr th{
+.tables thead tr th{
     font-size: 14px;
     font-weight: medium;
     letter-spacing: 0.35px;
@@ -36,7 +40,7 @@
     border: 1px solid #dee2e685;
 }
 
-.table tbody tr td{
+.tables tbody tr td{
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0.35px;
@@ -47,14 +51,14 @@
     border: 1px solid #dee2e685;
 }
 
-.table .text_open {
+.tables .text_open {
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 0.35px;
     color: #146C94;
 }
 
-.table .tbody tr td .btn {
+.tables .tbody tr td .btn {
     width: 130px;
     text-decoration: none;
     line-height: 35px;
@@ -71,25 +75,34 @@
 }
 
 @media(max-width : 768px) {
-    .table-box {
+    .tables-box {
     }
-    .table thead {
+    .tables thead {
         display: none;
     }
-    .table, .table tbody, .table td {
+    
+.tables-container {
+    padding: 0 10%;
+    margin-left: 0%;
+    /* margin-right: 12%; */
+    /* margin-right: 50%; */
+    /* margin: 40px auto 0; */
+}
+
+    .tables, .tables tbody, .tables td {
         display: block;
-        width: 100%;
-        margin-left: 5%;
+        width: 150%;
+        /* margin-left: 5%; */
     }
-    .table tr {
+    .tables tr {
         margin-bottom: 15px;
     }
-    .table tbody tr td {
+    .tables tbody tr td {
         text-align: alright;
-        padding-left: 100%;
+        /* padding-left: 100%; */
         position: relative;
     }
-    .table td:before {
+    .tables td:before {
         content: attr(data-label);
         position: absolute;
         left: 0;

@@ -7,6 +7,8 @@ import UserContext from './UserContext';
 import { Link } from "react-router-dom";
 import "./Mentor.css"
 import AddMoreStudent from "./AddMoreStudent"
+import NavBar from "./NavBar";
+import { ToastContainer, toast } from 'react-toastify';
 
 function Mentor(props) {
     const { allStudents, selectedStudents, access } = useContext(UserContext);
@@ -38,11 +40,21 @@ function Mentor(props) {
             console.log(studentData);
     }
 
-
+    
     async function handleAddStudent(student) {
+        toast.success('Added Successfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
         // Delete the student from the 'students' collection in Firestore
         const docRef = doc(db, "students", `${student.id}`);
-
+        
         await deleteDoc(docRef)
             .then(() => {
                 console.log("Entire Document has been deleted successfully.")
@@ -58,6 +70,7 @@ function Mentor(props) {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+
 
         fetchPost();
     }
@@ -80,40 +93,43 @@ function Mentor(props) {
             <td data-label = "Execution">{val.execution}</td>
             <td data-label = "Viva">{val.viva}</td>
             <td data-label = "Email">{val.email}</td>
-            <td data-label = "Action"><button onClick={() => handleAddStudent(val)} disabled = {!mentorAccess[currentMentor]}>Select Student</button></td>
+            <td data-label = "Action"><button onClick={() => handleAddStudent(val)} disabled = {!mentorAccess[currentMentor]} className = "btn btn-primary">Select Student</button></td>
         </tr>)
     })
 
     return (
-        <div className="table-box">
-            <div className="table-container">
-                <table className = "table">
-                    <caption className = "heading">Available Students</caption>
-                    <thead> 
-                        <tr>
-                            <th>UID</th>
-                            <th>Name</th>
-                            <th>Ideation</th>
-                            <th>Execution</th>
-                            <th>Viva</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data}
-                    </tbody>
-                </table>
-                <div style= {{fontSize: "1.5em", margin: "2rem 0 0 43%"}}>
-                    <Link to = {currentMentor} onClick = {handleSubmit}>
-                        <Link to = "/addstudent">
-                            <button class="button5">Add Student</button>
+        <>
+            <NavBar id = {props.id}/>
+            <div className="tables-box">
+                <div className="tables-container">
+                    <h1 className = "headings justify-content-center">Available Students</h1>
+                    <table className = "tables">
+                        <thead> 
+                            <tr>
+                                <th>UID</th>
+                                <th>Name</th>
+                                <th>Ideation</th>
+                                <th>Execution</th>
+                                <th>Viva</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data}
+                        </tbody>
+                    </table>
+                    <div style= {{fontSize: "1.5em", margin: "2rem 0 0 43%"}}>
+                        <Link to = {currentMentor} onClick = {handleSubmit}>
+                            <Link to = "/addstudent">
+                                <button class="btn btn-primary">Add Student</button>
+                            </Link>
                         </Link>
-                    </Link>
+                    </div>
+                    <AddStudent id = {props.id}/>
                 </div>
-                <AddStudent id = {props.id}/>
             </div>
-        </div>
+        </>
     )
 }
 

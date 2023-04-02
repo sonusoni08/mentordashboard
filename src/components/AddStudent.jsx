@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { collection, getDocs } from "firebase/firestore";
 import { getFirestore, doc, deleteDoc, addDoc } from "firebase/firestore";
 import { db } from '../firebase';
-// import emailjs from '@emailjs/browser';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './UserContext';
 import './AddStudent.css'
 
@@ -19,17 +19,6 @@ function AddStudent(props) {
     const currentMentor = `mentor${props.id}`;
     const form = useRef();
 
-//     const sendEmail = (e) => {
-//     e.preventDefault();
-
-//     emailjs.send(process.env.EMAILSERVICE, process.env.EMAILTEMPLATE, form.current, process.env.EMAILKEY)
-//       .then((result) => {
-//           console.log(result.text);
-//       }, (error) => {
-//           console.log(error.text);
-//       });
-//   };
-
     const fetchPost = async () => {
 
         await getDocs(collection(db, `students`))
@@ -39,7 +28,7 @@ function AddStudent(props) {
                 setStudents(newData);
             })
 
-        await getDocs(collection(db, currentMentor ))
+        await getDocs(collection(db, currentMentor))
             .then((querySnapshot) => {
                 const newData = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -52,33 +41,121 @@ function AddStudent(props) {
         fetchPost();
     }, [props.id]);
 
-    const handleSubmit = async() => {
-        // if (studentData.length < 3) {
-        //     alert("Add More Students");
-        // }
-        // else if (studentData.length > 4) {
-        //     alert("Remove Some Students");
-        // }
-        // else {
-            alert("Submitted Successfully");
-            setMentorAccess(preVal => ({
-                ...preVal,
-                [currentMentor] : false
-            }));
-            // studentData.map((value) => {
-            //     sendEmail(studentData);
-            // })
-        // }
+    const sendEmail = (data) => {
+
+        emailjs.send('service_mer5z2u', 'template_ebbc009', data, 'K5CPrxXVyd3QyvL6p')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
+        toast.success(`Email Sent to ${data.name} Successfully`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
+    const handleSubmit = async () => {
+        if (studentData.length < 3) {
+            toast.warn('Add More Students(minimum students 3)', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else if (studentData.length > 4) {
+            toast.warn('Remove Some Students(maximum students 4)', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else {
+            let flag = true;
+            studentData.map((value) => {
+                if (value.ideation < 0 || value.ideation > 10 || value.ideation == '-') flag = false;
+                if (value.execution < 0 || value.execution > 10 || value.execution == '-') flag = false;
+                if (value.viva < 0 || value.viva > 10 || value.viva == '-') flag = false;
+            })
+            if (flag) {
+
+                toast.success('Submitted Successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+    
+                setMentorAccess(preVal => ({
+                    ...preVal,
+                    [currentMentor]: false
+                }));
+                studentData.map((value) => {
+                    sendEmail(value);
+                })
+            }
+            else {
+                toast.warn('Please enter valid marks', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                }); 
+            }
+        }
     }
 
     async function handleAddStudent() {
         const student = students.find(student => student.uid === uid);
         if (!student) {
-            alert("Student Not Found");
+            toast.info('Student Not Found', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return;
         }
         if ((ideation > 10 || ideation < 0) || (execution > 10 || execution < 0) || (viva > 10 || viva < 0)) {
-            alert("Please Enter Marks in range of 1-10");
+            toast.info('Please Enter Marks in range of 1-10', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return;
         }
         student.ideation = ideation;
@@ -101,7 +178,7 @@ function AddStudent(props) {
 
         // Add the student object to the 'mentor1' collection in Firestore
         try {
-            const docRef = await addDoc(collection(db, currentMentor ), student);
+            const docRef = await addDoc(collection(db, currentMentor), student);
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -123,7 +200,16 @@ function AddStudent(props) {
             return;
         }
         if ((ideation > 10 || ideation < 0) || (execution > 10 || execution < 0) || (viva > 10 || viva < 0)) {
-            alert("Please Enter Marks in range of 1-10");
+            toast.info('Marks range is 1-10', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             return;
         }
         student.ideation = ideation;
@@ -131,7 +217,7 @@ function AddStudent(props) {
         student.viva = viva;
 
         // Delete the student from the 'mentor' collection in Firestore
-        const docRef = doc(db, currentMentor , `${student.id}`);
+        const docRef = doc(db, currentMentor, `${student.id}`);
 
         await deleteDoc(docRef)
             .then(() => {
@@ -142,19 +228,19 @@ function AddStudent(props) {
             })
 
         try {
-            const docRef = await addDoc(collection(db, currentMentor ), student);
+            const docRef = await addDoc(collection(db, currentMentor), student);
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
 
         const newStudents = studentData.filter(s => s.uid !== uid);
-        setStudentData([... newStudents, student]);
+        setStudentData([...newStudents, student]);
 
         fetchPost();
     }
 
-    const AddUpdateStudent = async(student) => {
+    const AddUpdateStudent = async (student) => {
         setUid(student.uid);
         setIdeation(student.ideation);
         setExecution(student.execution);
@@ -178,7 +264,7 @@ function AddStudent(props) {
 
 
         // Delete the student from the 'mentor' collection in Firestore
-        const docRef = doc(db, currentMentor , `${student.id}`);
+        const docRef = doc(db, currentMentor, `${student.id}`);
 
         await deleteDoc(docRef)
             .then(() => {
@@ -211,20 +297,20 @@ function AddStudent(props) {
             <td data-label="Total">{parseInt(student.ideation) + parseInt(student.execution) + parseInt(student.viva)}</td>
             <td data-label="Email">{student.email}</td>
             <td data-label="Delete">
-                <button onClick={() => handleDeleteStudent(student)} disabled = {!mentorAccess[currentMentor]}>Delete</button>
+                <button onClick={() => handleDeleteStudent(student)} disabled={!mentorAccess[currentMentor]} className = "btn btn-danger">Delete</button>
             </td>
             <td data-label="Update">
-                <button onClick={() => AddUpdateStudent(student)} disabled = {!mentorAccess[currentMentor]}>Update</button>
+                <button onClick={() => AddUpdateStudent(student)} disabled={!mentorAccess[currentMentor]} className = "btn btn-success">Update</button>
             </td>
         </tr>
     ));
 
-    if (selectedStudents.length == 0) selectedStudents = <p style = {{alignSelf : 'center'}}>No Students Selected</p>
+    if (selectedStudents.length == 0) selectedStudents = <p style={{ alignSelf: 'center' }}>No Students Selected</p>
     return (
-        <div className="table-box">
-            <div className="table-container">
-                <table className="table">
-                    <caption className="heading">Selected Student's List</caption>
+        <div className="tables-box">
+            <div className="tables-container">
+                <h1 className="headings">Selected Student's List</h1>
+                <table className="tables">
                     <thead>
                         <tr>
                             <th>UID</th>
@@ -251,26 +337,26 @@ function AddStudent(props) {
                             </div>
                             <div className="user-input-box">
                                 <label htmlFor="ideation">Ideation:</label>
-                                <input type="number" id="ideation" min = "0" max = "10" value={ideation} onChange={event => setIdeation(event.target.value)} />
+                                <input type="number" id="ideation" min="0" max="10" value={ideation} onChange={event => setIdeation(event.target.value)} />
                             </div>
 
                             <div className="user-input-box">
                                 <label htmlFor="execution">Execution:</label>
-                                <input type="number" id="execution" min = "0" max = "10" value={execution} onChange={event => setExecution(event.target.value)} />
+                                <input type="number" id="execution" min="0" max="10" value={execution} onChange={event => setExecution(event.target.value)} />
                             </div>
 
                             <div className="user-input-box">
                                 <label htmlFor="viva">Viva:</label>
-                                <input type="number" id="viva" min = "0" max = "10" value={viva} onChange={event => setViva(event.target.value)} />
+                                <input type="number" id="viva" min="0" max="10" value={viva} onChange={event => setViva(event.target.value)} />
                             </div>
                             <div className="form-submit-btn">
-                                <input type="submit" disabled = {!mentorAccess[currentMentor]} onClick={handleAddStudent} value="Select Student" />
+                                <input type="submit" disabled={!mentorAccess[currentMentor]} onClick={handleAddStudent} value="Select Student" />
                             </div>
                             <div className="form-submit-btn">
                                 <input type="submit" onClick={handleSubmit} value="Final Submit" />
                             </div>
                             <div className="form-submit-btn">
-                                <input type="submit" disabled = {!mentorAccess[currentMentor]} onClick={handleUpdateStudent} value="Update Student" />
+                                <input type="submit" disabled={!mentorAccess[currentMentor]} onClick={handleUpdateStudent} value="Update Student" />
                             </div>
                         </div>
                     </div>

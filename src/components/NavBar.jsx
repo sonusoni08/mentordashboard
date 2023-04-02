@@ -2,12 +2,12 @@ import React from 'react'
 import './NavBar.css'
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
   return (
     <div>
       <nav className="nav">
-        <Link to = "/mentor1" className = "nav-mentor logo">Mentor1</Link>
-        <Link to = "/mentor2" className = "nav-mentor logo">Mentor2</Link>
+        <Link className = "nav-mentor logo">Mentor{props.id}</Link>
+        <Link to = "/" className = "nav-mentor logo">Signout</Link>
       </nav>
     </div>
   )

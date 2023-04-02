@@ -1,0 +1,10 @@
+.max-width{
+    max-width: 18rem;
+    margin: 3rem;
+}
+
+.home-dashboard {
+     text-decoration: none;
+    font-weight: bold;
+    color: white;
+}

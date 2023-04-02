@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: rgb(233,185,148);
+background: radial-gradient(circle, rgba(233,185,148,1) 0%, rgba(233,185,148,0.7455357142857143) 100%);
 }
 
 .App-logo {
