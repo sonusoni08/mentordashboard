@@ -18,6 +18,8 @@ function AddStudent(props) {
     const [studentData, setStudentData] = useContext(UserContext).selectedStudents;
     const currentMentor = `mentor${props.id}`;
     const form = useRef();
+    let isDeletingStudent = false;
+    let isSelectingStudent = false;
 
     const fetchPost = async () => {
 
@@ -145,6 +147,20 @@ function AddStudent(props) {
             });
             return;
         }
+        if (isSelectingStudent) {
+            toast.warn('Student Already Selected', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+        isSelectingStudent = true;
         if ((ideation > 10 || ideation < 0) || (execution > 10 || execution < 0) || (viva > 10 || viva < 0)) {
             toast.info('Please Enter Marks in range of 1-10', {
                 position: "top-center",
@@ -192,6 +208,17 @@ function AddStudent(props) {
         setExecution(0);
         setViva(0);
         fetchPost();
+        toast.success('Selected Successfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        isSelectingStudent = false;
     }
 
     async function handleUpdateStudent() {
@@ -249,6 +276,20 @@ function AddStudent(props) {
 
     const handleDeleteStudent = async (student) => {
 
+        if (isDeletingStudent) {
+            toast.warn('Already Deleted', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return;
+        }
+        isDeletingStudent = true;
         student.ideation = "-";
         student.execution = "-";
         student.viva = "-";
@@ -285,6 +326,17 @@ function AddStudent(props) {
         setExecution(0);
         setViva(0);
         fetchPost();
+        toast.success('Deleted Successfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        isDeletingStudent = false;
     }
 
     let selectedStudents = studentData.map(student => (
