@@ -14,15 +14,15 @@ DashBoard - Mentor would be able to :
 
 <img align="center" alt="Coding" src="https://i.ibb.co/Xz88CPJ/d1.png" width="350" height="250" /><br>
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.003.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/D93Q1N6/d2.png" width="350" height="250" /><br>
 
 Adding Student
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.004.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/R4zsfCr/adding.png" width="350" height="250" /><br>
 
 Deleting Student
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.005.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/s3k837Q/deleting.png" width="350" height="250" /><br>
 
 **Final Submit**
 
@@ -30,12 +30,12 @@ Email - Email Sent to student along with their marks
 
 PDf - Pdf of selected and non selected student downloaded for mentor. All the rights of adding, deleting and updating have been removed from mentor.
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.006.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/dg1CZsf/final-Submit.png" width="350" height="250" /><br>
 
 Email :
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.007.png)
+<img align="center" alt="Coding" src="https://i.ibb.co/CQmK3x0/email.png" width="350" height="250" /><br>
 
 PDF
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.008.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/8ckgW4J/pdf.png" width="350" height="250" /><br>
