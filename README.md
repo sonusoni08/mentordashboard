@@ -1,6 +1,6 @@
 **Home Page** - We can switch between different mentors and upload marks
 
-![](https://ibb.co/DVvxtKg)
+<img align="right" alt="Coding" src="https://ibb.co/DVvxtKg" width="350" height="250" /><br>
 
 DashBoard - Mentor would be able to :
 
