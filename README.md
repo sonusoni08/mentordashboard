@@ -1,6 +1,6 @@
 **Home Page** - We can switch between different mentors and upload marks
 
-<img align="right" alt="Coding" src="https://i.ibb.co/JBGfKkF/home.png" width="350" height="250" /><br>
+<img align="center" alt="Coding" src="https://i.ibb.co/JBGfKkF/home.png" width="350" height="250" /><br>
 
 DashBoard - Mentor would be able to :
 
@@ -12,7 +12,7 @@ DashBoard - Mentor would be able to :
 - Can select student to update marks by cicking at update button.
 - Can update marks by filling marks fields in form and click at update student(in form) button.
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.002.jpeg)
+<img align="center" alt="Coding" src="https://i.ibb.co/Xz88CPJ/d1.png" width="350" height="250" /><br>
 
 ![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.003.jpeg)
 
