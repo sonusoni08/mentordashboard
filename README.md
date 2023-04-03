@@ -2,7 +2,7 @@
 
 <img align="center" alt="Coding" src="https://i.ibb.co/JBGfKkF/home.png" width="auto" height="auto" /><br>
 
-DashBoard - Mentor would be able to :
+**DashBoard** - Mentor would be able to :
 
 - Logout
 - See List of all available students
@@ -16,13 +16,17 @@ DashBoard - Mentor would be able to :
 
 <img align="center" alt="Coding" src="https://i.ibb.co/D93Q1N6/d2.png" width="auto" height="auto" /><br>
 
-Adding Student
+**Adding Student**
 
 <img align="center" alt="Coding" src="https://i.ibb.co/R4zsfCr/adding.png" width="auto" height="auto" /><br>
 
-Deleting Student
+**Deleting Student**
 
 <img align="center" alt="Coding" src="https://i.ibb.co/s3k837Q/deleting.png" width="auto" height="auto" /><br>
+
+**Updating Student**
+
+<img align="center" alt="Coding" src="https://i.ibb.co/HBtkhGq/update.png" width="auto" height="auto" /><br>
 
 **Final Submit**
 
