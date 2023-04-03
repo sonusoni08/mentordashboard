@@ -1,6 +1,6 @@
 **Home Page** - We can switch between different mentors and upload marks
 
-![](Aspose.Words.5397c34f-75fc-4635-b9b0-cc8a2d71115e.001.jpeg)
+![](https://ibb.co/DVvxtKg)
 
 DashBoard - Mentor would be able to :
 
