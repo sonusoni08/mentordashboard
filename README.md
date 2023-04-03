@@ -24,9 +24,9 @@
 
 <img align="center" alt="Coding" src="https://i.ibb.co/s3k837Q/deleting.png" width="auto" height="auto" /><br>
 
-**Updating Student**
+**Updating Student** - Marks of students are updated
 
-<img align="center" alt="Coding" src="https://i.ibb.co/HBtkhGq/update.png" width="auto" height="auto" /><br>
+<img align="center" alt="Coding" src="https://i.ibb.co/HrYx9mN/updating.png" width="auto" height="auto" /><br>
 
 **Final Submit**
 
